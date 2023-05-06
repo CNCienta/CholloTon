@@ -1,18 +1,60 @@
 import { InlineKeyboard } from "grammy";
 
+
 export default async function handleStart(ctx) {
   const menu = new InlineKeyboard()
-    .text("CholloTon", "buy")
+    
+    .url("CholloTon", "https://cholloton.com")
     .row()
-    .url("Tambien puedes usar nuestra Web3.0", "https://cholloton.com");
+    .text("Cars", "buy")
+    .text("Home", "buy")
+    .text("Home", "buy")
+    .row()
+    .text("Cars", "buy")
+    .text("Home", "buy")
+    .text("Home", "buy")
+    .row()
+    .text("Cars", "buy")
+    .text("Home", "buy")
+    .text("Home", "buy")
+    .row()
+    .text("Cars", "buy")
+    .text("Home", "buy")
+    .text("Home", "buy")
+    .row()
+    .text("Cars", "buy")
+    .text("Home", "buy")
+    .text("Home", "buy")
+    .row()
+    .text("Cars", "buy")
+    .text("Home", "buy")
+    .text("Home", "buy")
+    .row()
+    .text("Cars", "buy")
+    .text("Home", "buy")
+    .text("Home", "buy")
+    .row()
+    .text("Cars", "buy")
+    .text("Home", "buy")
+    .text("Home", "buy")
+    .row()
+    .text("Cars", "buy")
+    .text("Home", "buy")
+    .text("Home", "buy")
+    .row()
+    ;
+
+    await ctx.replyWithPhoto(
+    
+      "https://github.com/CNCienta/CholloTon/blob/master/src/assets/test.png",
+    
+    );
+    
 
   await ctx.reply(
 
-    `Bienvenido a CholloTon!! Ahora puedes vender tus productos aqui y comprar todo lo que necesites!!
-     Aceptamos pagos en TON, BTC, ETH, USDT(ERC20), EUR, USD, ...
-     -----
-     Welcome to CholloTon!! Now you can sell your products here and buy everything you need!!
-     We accept payments in TON, BTC, ETH, USDT(ERC20), EUR, USD, ...`,
+    `Bienvenido a CholloTon!! Ahora puedes vender tus productos aqui y comprar todo lo que necesites!! Aceptamos pagos en TON, BTC, ETH, USDT(ERC20), EUR, USD, ...
+    `,
 
     { reply_markup: menu, parse_mode: "HTML" }
   );

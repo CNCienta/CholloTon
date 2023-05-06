@@ -1,22 +1,22 @@
 import { InlineKeyboard } from "grammy";
-
-import {
-  generatePaymentLink,
-  verifyTransactionExistance,
-} from "../../services/ton.js";
+import { generatePaymentLink,verifyTransactionExistance} from "../../services/ton.js";
 
 export async function startPaymentProcess(conversation, ctx) {
+
   // Remove the loading clock
   await ctx.answerCallbackQuery();
-
+  
   await ctx.replyWithPhoto(
+    
     "https://github.com/CNCienta/CholloTon/blob/master/src/assets/test.png",
     {
+      
       caption:
         "¿Cuantos desea comprar? Comprar\nP.S. Precio por unidad: 3 TON",
     }
-  );
 
+  );
+  
   // Wait until the user enters the number
   const count = await conversation.form.number();
 
@@ -42,7 +42,7 @@ export async function startPaymentProcess(conversation, ctx) {
     "tonkeeper"
   );
 
-  const menu = new InlineKeyboard()
+  const menu2 = new InlineKeyboard()
     .url("Click to pay in TonHub", tonhubPaymentLink)
     .row()
     .url("Click to pay in TonKeeper", tonkeeperPaymentLink)
@@ -56,13 +56,13 @@ Fine, all you have to do is transfer ${amount} TON to the wallet <code>${process
 <i>WARNING: I am currently working on ${process.env.NETWORK}</i>
 
 P.S. You can conveniently make a transfer by clicking on the appropriate button below and confirm the transaction in the offer`,
-    { reply_markup: menu, parse_mode: "HTML" }
+    { reply_markup: menu2, parse_mode: "HTML" }
   );
 }
 
 export async function checkTransaction(ctx) {
   await ctx.answerCallbackQuery({
-    text: "Wait a bit, I need to check the availability of your transaction",
+    text: "Espere un segundo, comprobando disponibilidad",
   });
 
   if (
@@ -72,10 +72,10 @@ export async function checkTransaction(ctx) {
       ctx.session.comment
     )
   ) {
-    const menu = new InlineKeyboard().text("Buy more dumplings🥟", "buy");
+    const menu2 = new InlineKeyboard().text("Buy more dumplings🥟", "buy");
 
     await ctx.reply("Thank you so much. Enjoy your meal!", {
-      reply_markup: menu,
+      reply_markup: menu2,
     });
 
     // Reset the session data
