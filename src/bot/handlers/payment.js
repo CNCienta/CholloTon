@@ -10,7 +10,7 @@ export async function startPaymentProcess(conversation, ctx) {
   await ctx.answerCallbackQuery();
 
   await ctx.replyWithPhoto(
-    "../../assets/test.png",
+    "https://github.com/CNCienta/CholloTon/blob/master/src/assets/test.png",
     {
       caption:
         "¿Cuantos desea comprar? Comprar\nP.S. Precio por unidad: 3 TON",
