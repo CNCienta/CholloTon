@@ -58,6 +58,7 @@ export default async function handleStart(ctx) {
     
     );
     
+  await ctx.reply('Hola ' + ctx.from.first_name + '!');
 
   await ctx.reply(
 
