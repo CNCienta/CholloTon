@@ -5,31 +5,48 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import {startPaymentProcess,checkTransaction} from "./bot/handlers/payment.js";
+import handleStart from "./bot/handlers/start.js";
+import {teleFonos} from "./bot/handlers/telefonos.js";
+import bodyParser from 'body-parser';
+
+
+
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const url = 'http://localhost:3000/assets';
 
 var app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  next();
+});
+
+app.get('/telefonos', (req, res) => {
+  res.json(telefonos);
+});
+
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, '/'));
+});
 
 app.use('/assets', 
     express.static(path.join(__dirname, 
       'assets')));
 
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, '/'));
-  });
-
   app.listen(3000, function () {
     console.log('CholloTon listening on port 3000!');
   });
 
-import {
-  startPaymentProcess,
-  checkTransaction,
-} from "./bot/handlers/payment.js";
-import handleStart from "./bot/handlers/start.js";
-
-dotenv.config();
 
 async function runApp() {
   console.log("Lanzando CholloTon...");
@@ -56,10 +73,13 @@ async function runApp() {
   });
   bot.callbackQuery("check_transaction", checkTransaction);
 
+  // Register JSON
+  bot.command("telefonos", teleFonos);
+  
   // Start bot
   await bot.init();
   bot.start();
-  console.info(`Bot @${bot.botInfo.username} esta actualizado y funcionando`);
+  console.info(`@${bot.botInfo.username} esta actualizado y funcionando`);
 }
 
 void runApp();
