@@ -10,7 +10,7 @@ export async function startPaymentProcess(conversation, ctx) {
   await ctx.answerCallbackQuery();
 
   await ctx.replyWithPhoto(
-    "http://localhost:3000/assets/test.png",
+    "../../assets/test.png",
     {
       caption:
         "¿Cuantos desea comprar? Comprar\nP.S. Precio por unidad: 3 TON",
