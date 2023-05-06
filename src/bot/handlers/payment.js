@@ -1,6 +1,7 @@
 import { InlineKeyboard } from "grammy";
 import { generatePaymentLink,verifyTransactionExistance} from "../../services/ton.js";
 
+
 export async function startPaymentProcess(conversation, ctx) {
 
   // Remove the loading clock

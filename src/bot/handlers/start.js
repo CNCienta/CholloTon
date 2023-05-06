@@ -6,7 +6,7 @@ export default async function handleStart(ctx) {
 
     .url("CholloTon", "https://cholloton.com")
     .row()
-    .text("TELÉFONOS", "buy")
+    .text("TELÉFONOS", "telefonos")
     .text("JOYERÍA", "buy")
     .text("INFORMÁTICA", "buy")
     .row()
@@ -57,13 +57,11 @@ export default async function handleStart(ctx) {
       "https://github.com/CNCienta/CholloTon/blob/master/src/assets/test.png",
     
     );
-    
-  await ctx.reply('Hola ' + ctx.from.first_name + '!');
 
   await ctx.reply(
 
-    `Bienvenido a CholloTon!! Ahora puedes vender tus productos y comprar todo lo que necesites aqui!! Aceptamos pagos en TON, BTC, ETH, USDT(ERC20), EUR, USD, ...
-    `,
+    'Bienvenido a CholloTon ' + ctx.from.first_name + '!! Ahora puedes vender tus productos y comprar todo lo que necesites aqui!! Aceptamos pagos en TON - BTC - ETH - USDT(ERC20) - EUR - USD'
+    ,
 
     { reply_markup: menu, parse_mode: "HTML" }
   );
