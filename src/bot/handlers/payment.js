@@ -23,7 +23,7 @@ export async function startPaymentProcess(conversation, ctx) {
   // Get the total cost: multiply the number of portions by the price of the 1 portion
   const amount = count * 3;
   // Generate random comment
-  const comment = Math.random().toString(36).substring(2, 8) + "dumplings";
+  const comment = Math.random().toString(36).substring(2, 8) + "productos";
   // Save data to the session
   conversation.session.amount = amount;
   conversation.session.comment = comment;
@@ -43,19 +43,19 @@ export async function startPaymentProcess(conversation, ctx) {
   );
 
   const menu2 = new InlineKeyboard()
-    .url("Click to pay in TonHub", tonhubPaymentLink)
+    .url("Click para pagar en TonHub", tonhubPaymentLink)
     .row()
-    .url("Click to pay in TonKeeper", tonkeeperPaymentLink)
+    .url("Click para pagar en TonKeeper", tonkeeperPaymentLink)
     .row()
-    .text(`I sent ${amount} TON`, "check_transaction");
+    .text(`Envie ${amount} TON`, "check_transaction");
 
   await ctx.reply(
     `
-Fine, all you have to do is transfer ${amount} TON to the wallet <code>${process.env.OWNER_WALLET}</code> with the comment <code>${comment}</code>.
+Bien, solo tienes que transferir ${amount} TON  a la wallet <code>${process.env.OWNER_WALLET}</code> con el comentario <code>${comment}</code>.
 
-<i>WARNING: I am currently working on ${process.env.NETWORK}</i>
+<i>Estamos trabajando... ${process.env.NETWORK}</i>
 
-P.S. You can conveniently make a transfer by clicking on the appropriate button below and confirm the transaction in the offer`,
+Confirma tu transferencia!`,
     { reply_markup: menu2, parse_mode: "HTML" }
   );
 }
@@ -72,9 +72,9 @@ export async function checkTransaction(ctx) {
       ctx.session.comment
     )
   ) {
-    const menu2 = new InlineKeyboard().text("Buy more dumplings🥟", "buy");
+    const menu2 = new InlineKeyboard().text("Comprar mas!", "buy");
 
-    await ctx.reply("Thank you so much. Enjoy your meal!", {
+    await ctx.reply("Gracias por confiar en nosotros,disfrute de su producto!", {
       reply_markup: menu2,
     });
 
@@ -82,6 +82,6 @@ export async function checkTransaction(ctx) {
     ctx.session.amount = 0;
     ctx.session.comment = "";
   } else {
-    await ctx.reply("I didn't receive your transaction, wait a bit");
+    await ctx.reply("No recibimos su transferencia, espere...");
   }
 }
