@@ -54,7 +54,7 @@ export async function startPaymentProcess(conversation, ctx) {
     `
 Bien, solo tienes que transferir ${amount} TON  a la wallet <code>${process.env.OWNER_WALLET}</code> con el comentario <code>${comment}</code>.
 
-<i>Estamos trabajando... ${process.env.NETWORK}</i>
+<i>Red conectada ${process.env.NETWORK} ...</i>
 
 Confirma tu transferencia!`,
     { reply_markup: menu2, parse_mode: "HTML" }
